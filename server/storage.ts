@@ -50,7 +50,14 @@ export class MemStorage implements IStorage {
       { name: 'Bitter Gourd', mealType: 'lunch', imageUrl: 'https://images.unsplash.com/photo-1603507412979-e5ce16eef9b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' },
       { name: 'Lady Finger', mealType: 'dinner', imageUrl: 'https://images.unsplash.com/photo-1648172895175-03967e897192?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' },
       { name: 'Brinjal Curry', mealType: 'dinner', imageUrl: 'https://images.unsplash.com/photo-1613081571760-e99117d5ade4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' },
-      { name: 'Paneer Butter Masala', mealType: 'dinner', imageUrl: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' }
+      { name: 'Paneer Butter Masala', mealType: 'dinner', imageUrl: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' },
+      { name: 'Cabbage Thoran', mealType: 'lunch', imageUrl: 'https://images.unsplash.com/photo-1593001872095-7d5b3868dd29?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' },
+      { name: 'Mushroom Masala', mealType: 'dinner', imageUrl: 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' },
+      { name: 'Cucumber Raita', mealType: 'lunch', imageUrl: 'https://images.unsplash.com/photo-1589135233689-d45dce15e171?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' },
+      { name: 'Dal Makhani', mealType: 'dinner', imageUrl: 'https://images.unsplash.com/photo-1546549032-9571cd6b27df?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' },
+      { name: 'Beetroot Curry', mealType: 'lunch', imageUrl: 'https://images.unsplash.com/photo-1604413191066-4dd20bedf486?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' },
+      { name: 'Carrot Poriyal', mealType: 'dinner', imageUrl: 'https://images.unsplash.com/photo-1584653059760-73fc72010b71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' },
+      { name: 'Tomato Rasam', mealType: 'lunch', imageUrl: 'https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80' }
     ];
     
     vegetablesData.forEach(veg => {
@@ -93,7 +100,11 @@ export class MemStorage implements IStorage {
   
   async createVegetable(insertVegetable: InsertVegetable): Promise<Vegetable> {
     const id = this.currentVegetableId++;
-    const vegetable: Vegetable = { ...insertVegetable, id };
+    const vegetable: Vegetable = { 
+      ...insertVegetable, 
+      id,
+      imageUrl: insertVegetable.imageUrl ?? null 
+    };
     this.vegetables.set(id, vegetable);
     return vegetable;
   }

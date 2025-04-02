@@ -7,7 +7,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { DataTable, FeedbackRating } from "@/components/ui/data-table";
 import { useUser } from "@/lib/auth";
 import { FeedbackStats } from "@shared/schema";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import { BarChart, Bar, LineChart, Line, PieChart, Pie, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
 const Dashboard = () => {
   const [dateFilter, setDateFilter] = useState("Today");
@@ -216,17 +216,62 @@ const Dashboard = () => {
             {/* Chart container */}
             <div className="mb-8">
               <div className="bg-white border border-neutral-200 rounded-lg p-4 shadow-sm">
-                <ResponsiveContainer width="100%" height={300}>
-                  <BarChart data={chartData}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Bar dataKey="likes" fill="#4CAF50" name="Likes" />
-                    <Bar dataKey="dislikes" fill="#F44336" name="Dislikes" />
-                  </BarChart>
-                </ResponsiveContainer>
+                {viewType === "Bar Graph" && (
+                  <ResponsiveContainer width="100%" height={400}>
+                    <BarChart 
+                      data={chartData}
+                      layout="vertical"
+                      margin={{ top: 20, right: 30, left: 90, bottom: 10 }}
+                    >
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis type="number" />
+                      <YAxis 
+                        dataKey="name" 
+                        type="category" 
+                        width={80}
+                        tick={{ fontSize: 12 }}
+                      />
+                      <Tooltip />
+                      <Legend />
+                      <Bar dataKey="likes" fill="#0191C6" name="Likes" />
+                      <Bar dataKey="dislikes" fill="#FF7676" name="Dislikes" />
+                    </BarChart>
+                  </ResponsiveContainer>
+                )}
+                {viewType === "Pie Chart" && (
+                  <ResponsiveContainer width="100%" height={400}>
+                    <PieChart>
+                      <Pie 
+                        data={chartData} 
+                        dataKey="likes" 
+                        nameKey="name" 
+                        cx="50%" 
+                        cy="50%" 
+                        outerRadius={120} 
+                        fill="#0191C6" 
+                        label
+                      />
+                      <Tooltip />
+                      <Legend />
+                    </PieChart>
+                  </ResponsiveContainer>
+                )}
+                {viewType === "Line Chart" && (
+                  <ResponsiveContainer width="100%" height={400}>
+                    <LineChart
+                      data={chartData}
+                      margin={{ top: 20, right: 30, left: 20, bottom: 10 }}
+                    >
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="name" />
+                      <YAxis />
+                      <Tooltip />
+                      <Legend />
+                      <Line type="monotone" dataKey="likes" stroke="#0191C6" />
+                      <Line type="monotone" dataKey="dislikes" stroke="#FF7676" />
+                    </LineChart>
+                  </ResponsiveContainer>
+                )}
               </div>
             </div>
             

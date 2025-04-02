@@ -187,7 +187,7 @@ const Feedback = ({ vegetables }: FeedbackProps) => {
           <Button
             variant="default"
             onClick={handleSubmit}
-            className="inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary hover:bg-orange-600"
+            className="inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary hover:bg-sky-700"
             disabled={submitFeedbackMutation.isPending}
           >
             {submitFeedbackMutation.isPending ? 'Submitting...' : 'Submit Feedback'}

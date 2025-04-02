@@ -55,7 +55,7 @@ const Navbar = () => {
                   Sign In
                 </Link>
                 <Link href="/signup">
-                  <Button variant="default" className="bg-primary hover:bg-orange-600">Sign Up</Button>
+                  <Button variant="default" className="bg-primary hover:bg-sky-700">Sign Up</Button>
                 </Link>
               </>
             ) : (
@@ -116,7 +116,7 @@ const Navbar = () => {
                 Sign In
               </Link>
               <Link href="/signup" 
-                className="block px-3 py-2 rounded-md text-base font-medium text-white bg-primary hover:bg-orange-600 transition duration-150 text-center"
+                className="block px-3 py-2 rounded-md text-base font-medium text-white bg-primary hover:bg-sky-700 transition duration-150 text-center"
                 onClick={closeMobileMenu}
               >
                 Sign Up
